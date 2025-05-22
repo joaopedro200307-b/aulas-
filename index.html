@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>controle de tempo</title>
+    <link rel="stylesheet" href="algumacoisa.css">
+</head>
+<body>
+  <h1>agora são exatamente:</h1>  
+<h2 id="relogio"></h2>
+<script>
+    function atualizarRelogio() {
+        const agora = new Date();
+        const horas = agora.getHours().toString().padStart(2, '0'); //1:5:30->01:05:30
+        const minutos = agora.getMinutes().toString().padStart(2, '0');
+        const segundos = agora.getSeconds().toString().padStart(2, '0');
+
+        document.getElementById('relogio').textContent = `${horas}:${minutos}:${segundos}`;
+    }
+    atualizarRelogio();
+    setInterval(atualizarRelogio, 1000); 
+</script>
+
+<hr>
+<h2 id="cronometro">00:00:00</h2>
+<div>
+
+<button onclick="iniciar()" id="iniciar">iniciar</button>
+<button onclick="pausar()" id="pausar">pausar</button>
+<button onclick="zerar()" id="zerar">zerar</button>
+
+</div>
+<script>
+    let tempo = 0;
+    let intervalo;
+
+    function formatarTime(){
+
+        const h = String(Math.floor(tempo / 3600)).padStart(2, '0');
+        const m = String(Math.floor((tempo % 3600) / 60)).padStart(2, '0');
+        const s = String(tempo % 60).padStart(2, '0');
+        return `${h}:${m}:${s}`;
+
+    }
+
+</script>
+</body>
+</html>
